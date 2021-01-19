@@ -24,6 +24,7 @@ public class Member {
     @Embedded
     private Address address;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "member") // 매핑 되었다는 의미. 매핑을 하지 않음.
     private List<Order> orders = new ArrayList<>();
 }

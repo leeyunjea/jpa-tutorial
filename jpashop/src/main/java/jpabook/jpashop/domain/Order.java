@@ -29,7 +29,7 @@ public class Order {
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "member_id") // 연관관계 주인
-    private Member member;
+    private Member member; // hibernate가 new ProxyMember() = (new ByteBuddyInterceptor)를 생성해서 넣어놈. : bytebuddy
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
