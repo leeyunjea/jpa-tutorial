@@ -5,6 +5,7 @@ import study.datajpa.entity.Member;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,6 +48,12 @@ public class MemberJpaRepository {
         return em.createQuery("select m from Member m where m.username = :username and m.age > :age")
                 .setParameter("username", username)
                 .setParameter("age", age)
+                .getResultList();
+    }
+
+    public List<Member> findByUsername(String username) {
+        return em.createNamedQuery("Member.findByUsername")
+                .setParameter("username", username)
                 .getResultList();
     }
 }
