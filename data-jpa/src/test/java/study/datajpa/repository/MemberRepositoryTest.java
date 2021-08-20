@@ -191,8 +191,8 @@ public class MemberRepositoryTest {
 
         // when
         Page<Member> page = memberRepository.findByAge(age, pageRequest);
-//        Slice<Member> page = memberRepository.findByAge(age, pageRequest);
-//        List<Member> page = memberRepository.findByAge(age, pageRequest);
+        //Slice<Member> page = memberRepository.findByAge(age, pageRequest);
+        //List<Member> page = memberRepository.findByAge(age, pageRequest);
 
         Page<MemberDto> toMap = page.map(member -> new MemberDto(member.getId(), member.getUsername(), null));
 
@@ -206,10 +206,10 @@ public class MemberRepositoryTest {
         assertThat(page.isFirst()).isTrue();
         assertThat(page.hasNext()).isTrue();
 
-//        for (Member member : content) {
-//            System.out.println("member = " + member);
-//        }
-//        System.out.println("totalElements = " + totalElements);
+        //for (Member member : content) {
+        //    System.out.println("member = " + member);
+        //}
+        //System.out.println("totalElements = " + totalElements);
     }
 
     @Test
@@ -224,8 +224,8 @@ public class MemberRepositoryTest {
         // when
         int resultCount = memberRepository.bulkAgePlus(20);
         // bulk update일 경우 영속성컨텍스트는 모르는 상태로 디비에 업데이트됨. 영속성 컨텍스트를 날려줘야 함.
-//        em.flush();
-//        em.clear();
+        //em.flush();
+        //em.clear();
 
         List<Member> result = memberRepository.findByUsername("member5");
         Member member5 = result.get(0);
@@ -255,8 +255,8 @@ public class MemberRepositoryTest {
 
         // when
         // select Member
-//        List<Member> members = memberRepository.findAll();
-//        List<Member> members = memberRepository.findMemberFetchJoin();
+        //List<Member> members = memberRepository.findAll();
+        //List<Member> members = memberRepository.findMemberFetchJoin();
         List<Member> members = memberRepository.findEntityGraphByUsername("member1");
 
         for (Member member : members) {
@@ -275,8 +275,8 @@ public class MemberRepositoryTest {
         em.clear();
 
         // when
-//        Member findMember = memberRepository.findById(member1.getId()).get();
-//        findMember.setUsername("member2");
+        //Member findMember = memberRepository.findById(member1.getId()).get();
+        //findMember.setUsername("member2");
         Member findMember = memberRepository.findReadOnlyByUsername("member1");
         findMember.setUsername("member2");
 
